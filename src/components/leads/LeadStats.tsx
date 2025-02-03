@@ -62,43 +62,46 @@ export const LeadStats = () => {
   return (
     <div className="space-y-6">
       {/* Status Labels */}
-      <div className="flex gap-4 items-center px-4 py-3 bg-[#F8F8FF] rounded-lg">
+      <div className="flex gap-4 items-center px-6 py-4 bg-[#F8F8FF] rounded-lg shadow-sm">
         {stats.map((stat, index) => (
           <div 
             key={index}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${stat.bgColor} ${stat.textColor}`}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg ${stat.bgColor} ${stat.textColor} hover:opacity-90 transition-opacity cursor-pointer`}
           >
-            <stat.icon className="w-4 h-4" />
+            <stat.icon className="w-5 h-5" />
             <span className="text-sm font-medium">{stat.label}</span>
           </div>
         ))}
       </div>
 
-      {/* Lead Cards */}
+      {/* Lead Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {stats.map((stat, index) => (
           <div 
             key={index} 
-            className={`${stat.bgColor} rounded-lg shadow-sm p-4 space-y-3`}
+            className={`${stat.bgColor} rounded-lg shadow-sm p-4 flex flex-col justify-between h-full`}
           >
-            <div className="flex justify-between items-start">
-              <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-white/80 ${stat.textColor}`}>
-                {stat.category}
-              </span>
-              <span className={`text-lg font-semibold ${stat.textColor}`}>
-                {stat.count}
-              </span>
-            </div>
+            <div className="space-y-4">
+              <div className="flex justify-between items-start">
+                <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-white/80 ${stat.textColor}`}>
+                  {stat.category}
+                </span>
+                <span className={`text-lg font-semibold ${stat.textColor}`}>
+                  {stat.count}
+                </span>
+              </div>
 
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                <span className="text-sm">Lead Name</span>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  <span className="text-sm">Lead Name</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  <span className="text-sm">Phone Number</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <span className="text-sm">Phone Number</span>
-              </div>
+
               <div className="text-sm space-y-1">
                 <div>CD: 2024-03-15</div>
                 <div>BY: John Doe</div>
@@ -107,11 +110,11 @@ export const LeadStats = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-4 gap-2 mt-4">
               {actionIcons.map(({ Icon, color }, i) => (
                 <div 
                   key={i}
-                  className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors"
+                  className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
                 >
                   <Icon className={`w-4 h-4 ${color}`} />
                 </div>
