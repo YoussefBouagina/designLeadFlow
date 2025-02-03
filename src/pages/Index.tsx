@@ -1,42 +1,37 @@
 import { Sidebar } from "@/components/layout/Sidebar";
 import { LeadStats } from "@/components/leads/LeadStats";
 import { LeadActions } from "@/components/leads/LeadActions";
-import { LeadTable } from "@/components/leads/LeadTable";
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-gray-50">
       <Sidebar />
-      <main className="flex-1 overflow-auto">
-        <div className="container mx-auto py-6 space-y-6">
+      <main className="flex-1 overflow-auto p-6">
+        <div className="max-w-[1400px] mx-auto space-y-6">
           <LeadActions />
           
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <h2 className="text-2xl font-bold">Table view</h2>
-              <div className="flex gap-2">
-                <Button variant="outline" size="sm">
-                  New
-                </Button>
-                <Button variant="outline" size="sm">
-                  Total Leads
-                </Button>
-              </div>
+              <h2 className="text-xl font-semibold">Leads</h2>
+              <Button variant="default" size="sm" className="bg-violet-600">
+                Table view
+              </Button>
             </div>
             
             <div className="flex items-center gap-4">
-              <Button variant="outline">
+              <Button variant="outline" className="bg-white">
                 <Filter className="w-4 h-4 mr-2" />
                 All labels
               </Button>
-              <Button>+ Add Leads</Button>
+              <Button className="bg-violet-600 hover:bg-violet-700">
+                + Add Leads
+              </Button>
             </div>
           </div>
 
           <LeadStats />
-          <LeadTable />
         </div>
       </main>
     </div>
