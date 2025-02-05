@@ -1,15 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { 
   User, Phone, Mail, MessageCircle, 
-  Link2, ArrowRight, Trash, Home, Send, Target,
-  Plus, Tag
+  Link2, ArrowRight, Trash, Home, Send 
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
 
-const defaultStats = [
+const stats = [
   { 
     label: "New", 
     count: "150", 
@@ -64,57 +59,17 @@ const actionIcons = [
 ];
 
 export const LeadStats = () => {
-  const [stats, setStats] = useState(defaultStats);
-  const [customLabels, setCustomLabels] = useState([]);
-
-  // Fetch labels from Supabase
-  const { data: labels, isLoading } = useQuery({
-    queryKey: ['labels'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('labels')
-        .select('*');
-      if (error) throw error;
-      return data;
-    }
-  });
-
   return (
     <div className="space-y-6">
-      {/* Logo and Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-2">
-          <Target className="w-8 h-8 text-violet-600" />
-          <span className="text-2xl font-bold text-violet-600">LeadFlow</span>
-        </div>
-        <div className="flex gap-2">
-          <Button className="bg-violet-600 hover:bg-violet-700">
-            <Plus className="w-4 h-4" /> Add Lead
-          </Button>
-          <Button variant="outline" className="border-violet-600 text-violet-600">
-            <Tag className="w-4 h-4" /> Add Label
-          </Button>
-        </div>
-      </div>
-
       {/* Status Labels */}
       <div className="flex gap-4 items-center px-4 py-3 bg-[#F8F8FF] rounded-lg">
         {stats.map((stat, index) => (
           <div 
             key={index}
-            className={`flex items-center gap-2 px-3 py-2 rounded-full ${stat.bgColor} ${stat.textColor} cursor-pointer hover:opacity-90 transition-opacity`}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${stat.bgColor} ${stat.textColor}`}
           >
             <stat.icon className="w-4 h-4" />
             <span className="text-sm font-medium">{stat.label}</span>
-          </div>
-        ))}
-        {labels?.map((label) => (
-          <div 
-            key={label.id}
-            className="flex items-center gap-2 px-3 py-2 rounded-full bg-gray-100 text-gray-700 cursor-pointer hover:opacity-90 transition-opacity"
-          >
-            <Tag className="w-4 h-4" />
-            <span className="text-sm font-medium">{label.name}</span>
           </div>
         ))}
       </div>
