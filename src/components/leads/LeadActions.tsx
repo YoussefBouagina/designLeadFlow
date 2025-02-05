@@ -8,11 +8,15 @@ import { useState } from "react";
 
 export const LeadActions = () => {
   const [inquiryFormOpen, setInquiryFormOpen] = useState(false);
+  const [addLeadOpen, setAddLeadOpen] = useState(false);
 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
-        <AddLeadDialog />
+        <AddLeadDialog 
+          open={addLeadOpen} 
+          onOpenChange={setAddLeadOpen}
+        />
         <AddLabelDialog />
         <Button className="bg-violet-600 hover:bg-violet-700">
           <FileText className="w-4 h-4 mr-2" />
