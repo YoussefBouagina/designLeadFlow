@@ -11,11 +11,7 @@ const Index = () => {
       <main className="flex-1 overflow-auto p-6">
         <div className="max-w-[1400px] mx-auto space-y-6">
           <div className="flex items-center justify-between mb-6">
-            <img 
-              src="/lovable-uploads/01d4d339-ae88-492f-9968-47aa79d24c40.png" 
-              alt="Logo" 
-              className="h-8"
-            />
+            <h1 className="text-2xl font-bold">Leads Management</h1>
           </div>
           
           <LeadActions />

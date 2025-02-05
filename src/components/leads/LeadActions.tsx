@@ -3,8 +3,12 @@ import { FileText, Bell, Video, Copy } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { AddLeadDialog } from "./AddLeadDialog";
 import { AddLabelDialog } from "./AddLabelDialog";
+import { InquiryForm } from "./InquiryForm";
+import { useState } from "react";
 
 export const LeadActions = () => {
+  const [inquiryFormOpen, setInquiryFormOpen] = useState(false);
+
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
@@ -32,11 +36,19 @@ export const LeadActions = () => {
         <div className="flex-1">
           <Input placeholder="Inquiry URL" className="w-full" />
         </div>
-        <Button variant="secondary">
+        <Button 
+          variant="secondary"
+          onClick={() => setInquiryFormOpen(true)}
+        >
           <Copy className="w-4 h-4 mr-2" />
           Copy URL
         </Button>
       </div>
+
+      <InquiryForm 
+        open={inquiryFormOpen} 
+        onOpenChange={setInquiryFormOpen} 
+      />
     </div>
   );
 };

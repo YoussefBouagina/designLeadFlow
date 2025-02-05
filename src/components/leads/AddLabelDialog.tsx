@@ -74,9 +74,20 @@ export const AddLabelDialog = () => {
               name="color"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Label Color</FormLabel>
+                  <FormLabel>Choose Label Color</FormLabel>
                   <FormControl>
-                    <Input type="color" {...field} />
+                    <div className="flex items-center gap-2">
+                      <Input 
+                        type="color" 
+                        {...field} 
+                        className="w-12 h-8 p-1"
+                      />
+                      <Input 
+                        {...field} 
+                        className="flex-1"
+                        placeholder="#000000"
+                      />
+                    </div>
                   </FormControl>
                 </FormItem>
               )}
