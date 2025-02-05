@@ -3,6 +3,13 @@ import {
   User, Phone, Mail, MessageCircle, 
   Link2, ArrowRight, Trash, Home, Send 
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const stats = [
   { 
@@ -48,15 +55,57 @@ const stats = [
 ];
 
 const actionIcons = [
-  { Icon: Link2, color: "text-green-500" },
-  { Icon: ArrowRight, color: "text-gray-700" },
-  { Icon: Mail, color: "text-emerald-700" },
-  { Icon: MessageCircle, color: "text-red-700" },
-  { Icon: Phone, color: "text-green-400" },
-  { Icon: Home, color: "text-red-500" },
-  { Icon: User, color: "text-blue-500" },
-  { Icon: Send, color: "text-gray-500" },
+  { Icon: Link2, color: "text-green-500", showForm: true },
+  { Icon: ArrowRight, color: "text-gray-700", showForm: false },
+  { Icon: Mail, color: "text-emerald-700", showForm: false },
+  { Icon: MessageCircle, color: "text-red-700", showForm: false },
+  { Icon: Phone, color: "text-green-400", showForm: false },
+  { Icon: Home, color: "text-red-500", showForm: false },
+  { Icon: User, color: "text-blue-500", showForm: false },
+  { Icon: Send, color: "text-gray-500", showForm: false },
 ];
+
+const ServiceForm = () => (
+  <div className="space-y-4 p-2">
+    <div className="bg-blue-600 text-white p-2 flex justify-between items-center">
+      <span>Label</span>
+      <button className="text-xl">&times;</button>
+    </div>
+    <div className="space-y-2">
+      {[
+        "Website Development",
+        "Software Development",
+        "Digital Marketing",
+        "Graphics Design",
+        "SEO",
+        "365 CRM",
+        "Content writing",
+        "Social media Marketing",
+        "PPT design",
+        "BWMS",
+        "Wapmonkey",
+        "10k Website",
+        "99 Post",
+        "All Services",
+        "Internship",
+        "Job",
+        "Accounting Software",
+        "E-Commerce",
+        "Logo Design"
+      ].map((service, index) => (
+        <div
+          key={index}
+          className="p-2 rounded cursor-pointer hover:bg-gray-100 transition-colors"
+          style={{
+            backgroundColor: index % 2 === 0 ? '#f8f9fa' : '#ffffff'
+          }}
+        >
+          {service}
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 export const LeadStats = () => {
   return (
@@ -79,7 +128,7 @@ export const LeadStats = () => {
         {stats.map((stat, index) => (
           <div 
             key={index} 
-            className={`${stat.bgColor} rounded-lg shadow-sm p-4 space-y-3`}
+            className={`${stat.bgColor} rounded-lg shadow-sm p-4 space-y-3 hover:shadow-md transition-shadow`}
           >
             <div className="flex justify-between items-start">
               <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-white/80 ${stat.textColor}`}>
@@ -108,13 +157,31 @@ export const LeadStats = () => {
             </div>
 
             <div className="grid grid-cols-4 gap-2">
-              {actionIcons.map(({ Icon, color }, i) => (
-                <div 
-                  key={i}
-                  className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors"
-                >
-                  <Icon className={`w-4 h-4 ${color}`} />
-                </div>
+              {actionIcons.map(({ Icon, color, showForm }, i) => (
+                showForm ? (
+                  <Dialog key={i}>
+                    <DialogTrigger asChild>
+                      <div 
+                        className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
+                      >
+                        <Icon className={`w-4 h-4 ${color}`} />
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Select Service</DialogTitle>
+                      </DialogHeader>
+                      <ServiceForm />
+                    </DialogContent>
+                  </Dialog>
+                ) : (
+                  <div 
+                    key={i}
+                    className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
+                  >
+                    <Icon className={`w-4 h-4 ${color}`} />
+                  </div>
+                )
               ))}
             </div>
           </div>

@@ -2,7 +2,13 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { LeadStats } from "@/components/leads/LeadStats";
 import { LeadActions } from "@/components/leads/LeadActions";
 import { Button } from "@/components/ui/button";
-import { Filter } from "lucide-react";
+import { Filter, ChevronRight, PlusCircle } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Index = () => {
   return (
@@ -25,9 +31,35 @@ const Index = () => {
             </div>
             
             <div className="flex items-center gap-4">
-              <Button variant="outline" className="bg-white">
-                <Filter className="w-4 h-4 mr-2" />
-                All labels
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="bg-white hover:bg-gray-100 group">
+                    <Filter className="w-4 h-4 mr-2" />
+                    All labels
+                    <ChevronRight className="w-4 h-4 ml-2 transition-transform group-data-[state=open]:rotate-90" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem className="cursor-pointer hover:bg-violet-50">
+                    New
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer hover:bg-violet-50">
+                    Processing
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer hover:bg-violet-50">
+                    Close-by
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer hover:bg-violet-50">
+                    Confirm
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer hover:bg-violet-50">
+                    Cancel
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button className="bg-violet-600 hover:bg-violet-700">
+                <PlusCircle className="w-4 h-4 mr-2" />
+                Add Lead
               </Button>
             </div>
           </div>
