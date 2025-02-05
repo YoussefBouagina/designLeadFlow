@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { PlusCircle, FileText, Bell, Video, Copy } from "lucide-react";
+import { FileText, Bell, Video, Copy } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { AddLeadDialog } from "./AddLeadDialog";
+import { AddLabelDialog } from "./AddLabelDialog";
 
 export const LeadActions = () => {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
-        <Button className="bg-violet-600 hover:bg-violet-700">
-          <PlusCircle className="w-4 h-4 mr-2" />
-          Leads
-        </Button>
+        <AddLeadDialog />
+        <AddLabelDialog />
         <Button className="bg-violet-600 hover:bg-violet-700">
           <FileText className="w-4 h-4 mr-2" />
           Task
