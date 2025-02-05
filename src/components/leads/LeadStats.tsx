@@ -112,6 +112,7 @@ const ServiceForm = () => (
 export const LeadStats = () => {
   const [sendSMSOpen, setSendSMSOpen] = useState(false);
   const [showLabelDialog, setShowLabelDialog] = useState(false);
+  const [showTableView, setShowTableView] = useState(false);
 
   return (
     <div className="space-y-6">
@@ -177,6 +178,17 @@ export const LeadStats = () => {
                         <ServiceForm />
                       </DialogContent>
                     </Dialog>
+                  );
+                }
+                if (Icon === Mail) {
+                  return (
+                    <div 
+                      key={i}
+                      onClick={() => setSendSMSOpen(true)}
+                      className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
+                    >
+                      <Icon className={`w-4 h-4 ${color}`} />
+                    </div>
                   );
                 }
                 return (

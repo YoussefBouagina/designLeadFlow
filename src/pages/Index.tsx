@@ -1,5 +1,6 @@
 import { Sidebar } from "@/components/layout/Sidebar";
 import { LeadStats } from "@/components/leads/LeadStats";
+import { LeadTable } from "@/components/leads/LeadTable";
 import { LeadActions } from "@/components/leads/LeadActions";
 import { Button } from "@/components/ui/button";
 import { Filter, ChevronRight, PlusCircle } from "lucide-react";
@@ -14,6 +15,7 @@ import { useState } from "react";
 
 const Index = () => {
   const [isAddLeadOpen, setIsAddLeadOpen] = useState(false);
+  const [showTableView, setShowTableView] = useState(false);
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -29,7 +31,12 @@ const Index = () => {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
               <h2 className="text-xl font-semibold">Leads</h2>
-              <Button variant="default" size="sm" className="bg-violet-600">
+              <Button 
+                variant="default" 
+                size="sm" 
+                className={showTableView ? "bg-violet-700" : "bg-violet-600"}
+                onClick={() => setShowTableView(!showTableView)}
+              >
                 Table view
               </Button>
             </div>
@@ -71,7 +78,7 @@ const Index = () => {
             </div>
           </div>
 
-          <LeadStats />
+          {showTableView ? <LeadTable /> : <LeadStats />}
           <AddLeadDialog open={isAddLeadOpen} onOpenChange={setIsAddLeadOpen} />
         </div>
       </main>
