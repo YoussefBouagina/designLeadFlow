@@ -10,6 +10,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { SendSMSDialog } from './SendSMSDialog';
+import { useState } from 'react';
 
 const stats = [
   { 
@@ -108,6 +110,8 @@ const ServiceForm = () => (
 );
 
 export const LeadStats = () => {
+  const [sendSMSOpen, setSendSMSOpen] = useState(false);
+
   return (
     <div className="space-y-6">
       {/* Status Labels */}
@@ -157,36 +161,36 @@ export const LeadStats = () => {
             </div>
 
             <div className="grid grid-cols-4 gap-2">
-              {actionIcons.map(({ Icon, color, showForm }, i) => (
-                showForm ? (
-                  <Dialog key={i}>
-                    <DialogTrigger asChild>
-                      <div 
-                        className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
-                      >
-                        <Icon className={`w-4 h-4 ${color}`} />
-                      </div>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                      <DialogHeader>
-                        <DialogTitle>Select Service</DialogTitle>
-                      </DialogHeader>
-                      <ServiceForm />
-                    </DialogContent>
-                  </Dialog>
-                ) : (
+              {actionIcons.map(({ Icon, color, showForm }, i) => {
+                if (Icon === Mail) {
+                  return (
+                    <div 
+                      key={i}
+                      onClick={() => setSendSMSOpen(true)}
+                      className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
+                    >
+                      <Icon className={`w-4 h-4 ${color}`} />
+                    </div>
+                  );
+                }
+                return (
                   <div 
                     key={i}
                     className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
                   >
                     <Icon className={`w-4 h-4 ${color}`} />
                   </div>
-                )
-              ))}
+                );
+              })}
             </div>
           </div>
         ))}
       </div>
+
+      <SendSMSDialog 
+        open={sendSMSOpen}
+        onOpenChange={setSendSMSOpen}
+      />
     </div>
   );
 };

@@ -11,7 +11,8 @@ import {
   ClipboardList,
   UserCheck,
   FileSpreadsheet,
-  Settings
+  Settings,
+  Target
 } from 'lucide-react';
 
 const menuItems = [
@@ -34,7 +35,10 @@ export const Sidebar = () => {
   return (
     <aside className="w-64 bg-white border-r border-gray-200">
       <div className="p-6 border-b border-gray-200">
-        <h1 className="text-2xl font-bold">LOGO</h1>
+        <div className="flex items-center gap-2">
+          <Target className="w-8 h-8 text-violet-600" />
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-violet-600 to-violet-800 bg-clip-text text-transparent">LeadFlow</h1>
+        </div>
       </div>
       <nav className="p-4">
         {menuItems.map((item, index) => (
