@@ -9,8 +9,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { AddLeadDialog } from "@/components/leads/AddLeadDialog";
+import { useState } from "react";
 
 const Index = () => {
+  const [isAddLeadOpen, setIsAddLeadOpen] = useState(false);
+
   return (
     <div className="flex h-screen bg-gray-50">
       <Sidebar />
@@ -57,7 +61,10 @@ const Index = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Button className="bg-violet-600 hover:bg-violet-700">
+              <Button 
+                className="bg-violet-600 hover:bg-violet-700"
+                onClick={() => setIsAddLeadOpen(true)}
+              >
                 <PlusCircle className="w-4 h-4 mr-2" />
                 Add Lead
               </Button>
@@ -65,6 +72,7 @@ const Index = () => {
           </div>
 
           <LeadStats />
+          <AddLeadDialog open={isAddLeadOpen} onOpenChange={setIsAddLeadOpen} />
         </div>
       </main>
     </div>

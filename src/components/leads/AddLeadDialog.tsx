@@ -4,7 +4,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -24,9 +23,13 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PlusCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+
+interface AddLeadDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
 const formSchema = z.object({
   status: z.string(),
@@ -42,7 +45,7 @@ const formSchema = z.object({
   comment: z.string().optional(),
 });
 
-export const AddLeadDialog = () => {
+export const AddLeadDialog = ({ open, onOpenChange }: AddLeadDialogProps) => {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -67,16 +70,11 @@ export const AddLeadDialog = () => {
       title: "Lead added successfully",
       description: "The lead has been added to your list.",
     });
+    onOpenChange(false);
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="bg-violet-600 hover:bg-violet-700">
-          <PlusCircle className="w-4 h-4 mr-2" />
-          Add Lead
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Add Lead</DialogTitle>

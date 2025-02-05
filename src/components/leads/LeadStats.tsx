@@ -111,6 +111,7 @@ const ServiceForm = () => (
 
 export const LeadStats = () => {
   const [sendSMSOpen, setSendSMSOpen] = useState(false);
+  const [showLabelDialog, setShowLabelDialog] = useState(false);
 
   return (
     <div className="space-y-6">
@@ -162,15 +163,20 @@ export const LeadStats = () => {
 
             <div className="grid grid-cols-4 gap-2">
               {actionIcons.map(({ Icon, color, showForm }, i) => {
-                if (Icon === Mail) {
+                if (Icon === Link2) {
                   return (
-                    <div 
-                      key={i}
-                      onClick={() => setSendSMSOpen(true)}
-                      className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
-                    >
-                      <Icon className={`w-4 h-4 ${color}`} />
-                    </div>
+                    <Dialog open={showLabelDialog} onOpenChange={setShowLabelDialog} key={i}>
+                      <DialogTrigger asChild>
+                        <div 
+                          className="w-8 h-8 bg-white/80 rounded-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
+                        >
+                          <Icon className={`w-4 h-4 ${color}`} />
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <ServiceForm />
+                      </DialogContent>
+                    </Dialog>
                   );
                 }
                 return (
