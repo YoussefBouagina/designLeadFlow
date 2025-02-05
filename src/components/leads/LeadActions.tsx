@@ -13,10 +13,13 @@ export const LeadActions = () => {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
-        <AddLeadDialog 
-          open={addLeadOpen} 
-          onOpenChange={setAddLeadOpen}
-        />
+        <Button 
+          onClick={() => setAddLeadOpen(true)}
+          className="bg-violet-600 hover:bg-violet-700"
+        >
+          <FileText className="w-4 h-4 mr-2" />
+          Add Lead
+        </Button>
         <AddLabelDialog />
         <Button className="bg-violet-600 hover:bg-violet-700">
           <FileText className="w-4 h-4 mr-2" />
@@ -49,6 +52,10 @@ export const LeadActions = () => {
         </Button>
       </div>
 
+      <AddLeadDialog 
+        open={addLeadOpen} 
+        onOpenChange={setAddLeadOpen}
+      />
       <InquiryForm 
         open={inquiryFormOpen} 
         onOpenChange={setInquiryFormOpen} 
