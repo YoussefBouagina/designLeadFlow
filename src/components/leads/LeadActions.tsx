@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { FileText, Bell, Video, Copy } from "lucide-react";
+import { FileText, Bell, Video, Copy, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { AddLeadDialog } from "./AddLeadDialog";
 import { AddLabelDialog } from "./AddLabelDialog";
@@ -17,7 +17,7 @@ export const LeadActions = () => {
           onClick={() => setAddLeadOpen(true)}
           className="bg-violet-600 hover:bg-violet-700"
         >
-          <FileText className="w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4 mr-2" />
           Add Lead
         </Button>
         <AddLabelDialog />
